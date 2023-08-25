@@ -6,9 +6,9 @@ const UserForm = (props) => {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const formikProps = {
 
-        initialValues: {fullname: '', color: '', lastname: '', email: '', phone: '', subscribed: [], channels: []},
+        initialValues: {name: '', email: '', phone: '', subscribed: [], channels: []},
         validationSchema: Yup.object({
-            fullname: Yup.string().required('Sorry, name is required'),
+            name: Yup.string().required('Sorry, name is required'),
             // lastname:Yup.string().required('Sorry, this is required'),
             email: Yup.string()
                 .required('Sorry, email is required')
@@ -32,9 +32,9 @@ const UserForm = (props) => {
                 <Formik {...formikProps}>
                     {() => (
                         <Form>
-                            <label htmlFor="fullname">Name</label>
-                            <Field name="fullname" type="text" className="form-control"/>
-                            <ErrorMessage name="fullname"/>
+                            <label htmlFor="name">Name</label>
+                            <Field name="name" type="text" className="form-control"/>
+                            <ErrorMessage name="name"/>
                             <hr className="mb-4"/>
                             <label htmlFor="email">E-mail</label>
                             <Field name="email" type="text" className="form-control"/>
