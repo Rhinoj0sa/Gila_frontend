@@ -1,6 +1,7 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from 'formik'
 import * as Yup from 'yup';
+import axios from "axios";
 
 const UserForm = (props) => {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -20,11 +21,20 @@ const UserForm = (props) => {
             channels: Yup.array().min(1, 'Please select at least one')
 
         }),
-        onSubmit: values => {
-            console.log(`values in FormThree: ${JSON.stringify(values)}`)
-            props.showData(values)
+        onSubmit: (values,{resetForm}) => {
+            axios.post('http://localhost:3000/user', values)
+                .then(res => {
+                    console.log(res)
+                    resetForm()
+                    alert(`User ${values.name} created`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    alert(`Error: ${err}`)
+                })
         }
     }
+
 
     return (
         <div className="container">
