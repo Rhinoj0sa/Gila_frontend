@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Table } from 'react-bootstrap';
 import axios from "axios";
 
-const Tabla = () => {
+const Notifications = () => {
     const [data, setData] = useState([])
     useEffect(() => {
         console.log('useEffect')
@@ -47,4 +47,4 @@ const Tabla = () => {
     );
 };
 
-export default Tabla;
+export default Notifications;

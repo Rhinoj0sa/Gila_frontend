@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import UserForm from './components/UserForm';
 import Header from './components/header';
 import MessageForm from "./components/MessageForm";
-import Tabla from "./components/Tabla";
+import Notifications from "./components/Notifications";
 
 const App = () => {
 
@@ -13,7 +13,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<MessageForm/>}></Route>
                     <Route path="/userform" element={<UserForm />}></Route>
-                    <Route path="/notifications" element={<Tabla/>}></Route>
+                    <Route path="/notifications" element={<Notifications/>}></Route>
                 </Routes>
             </div>
         </BrowserRouter>)
