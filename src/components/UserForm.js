@@ -1,14 +1,15 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from 'formik'
 import * as Yup from 'yup';
+import axios from "axios";
 
 const UserForm = (props) => {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const formikProps = {
 
-        initialValues: {fullname: '', color: '', lastname: '', email: '', phone: '', subscribed: [], channels: []},
+        initialValues: {name: '', email: '', phone: '', subscribed: [], channels: []},
         validationSchema: Yup.object({
-            fullname: Yup.string().required('Sorry, name is required'),
+            name: Yup.string().required('Sorry, name is required'),
             // lastname:Yup.string().required('Sorry, this is required'),
             email: Yup.string()
                 .required('Sorry, email is required')
@@ -20,11 +21,20 @@ const UserForm = (props) => {
             channels: Yup.array().min(1, 'Please select at least one')
 
         }),
-        onSubmit: values => {
-            console.log(`values in FormThree: ${JSON.stringify(values)}`)
-            props.showData(values)
+        onSubmit: (values,{resetForm}) => {
+            axios.post('http://localhost:3000/user', values)
+                .then(res => {
+                    console.log(res)
+                    resetForm()
+                    alert(`User ${values.name} created`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    alert(`Error: ${err}`)
+                })
         }
     }
+
 
     return (
         <div className="container">
@@ -32,9 +42,9 @@ const UserForm = (props) => {
                 <Formik {...formikProps}>
                     {() => (
                         <Form>
-                            <label htmlFor="fullname">Name</label>
-                            <Field name="fullname" type="text" className="form-control"/>
-                            <ErrorMessage name="fullname"/>
+                            <label htmlFor="name">Name</label>
+                            <Field name="name" type="text" className="form-control"/>
+                            <ErrorMessage name="name"/>
                             <hr className="mb-4"/>
                             <label htmlFor="email">E-mail</label>
                             <Field name="email" type="text" className="form-control"/>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
+import axios from "axios";
 
-const MessageForm = (props) => {
+const MessageForm = () => {
     const formikProps = {
 
         initialValues:{message:'',category:''},
@@ -10,9 +11,17 @@ const MessageForm = (props) => {
             message:Yup.string().min(10,'Sorry, message is too short').required('Sorry, message is required'),
             category:Yup.string().required('Sorry, category is required')
         }),
-        onSubmit: values => {
-            console.log(`values in FormThree: ${JSON.stringify(values)}`)
-            props.showData(values)
+        onSubmit: (values,{resetForm}) => {
+            axios.post('http://localhost:3000/messages', values)
+                .then(res => {
+                    console.log(res)
+                    resetForm()
+                    alert(`Message ${values.message} created`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    alert(`Error: ${err}`)
+                })
         }
     }
 
