@@ -30,16 +30,15 @@ const Notifications = () => {
             </tr>
             </thead>
             <tbody>
-            {data.map((dato, index) => (
+            {data.map((item, index) => (
                 <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{dato.name}</td>
-                    <td>{dato.message}</td>
-                    <td>{dato.category}</td>
-                    <td>{dato.channel}</td>
-                    <td>{dato.sent}</td>
-                    <td>{dato.createdAt}</td>
-
+                    <td>{item.name}</td>
+                    <td>{item.message}</td>
+                    <td>{item.category}</td>
+                    <td>{item.channel}</td>
+                    <td>{item.sent}</td>
+                    <td>{item.createdAt}</td>
                 </tr>
             ))}
             </tbody>
