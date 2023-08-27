@@ -5,7 +5,7 @@ import axios from "axios";
 import Card from 'react-bootstrap/Card';
 const MessageForm = () => {
     const formikProps = {
-        initialValues:{message:'',category:''},
+        initialValues:{message:'',category:'Finance'},
         validationSchema:Yup.object({
             message:Yup.string().min(10,'Sorry, message is too short').required('Sorry, message is required'),
             category:Yup.string().required('Sorry, category is required')
