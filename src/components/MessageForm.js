@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
 import axios from "axios";
-
+import Card from 'react-bootstrap/Card';
 const MessageForm = () => {
     const formikProps = {
         initialValues:{message:'',category:''},
@@ -24,7 +24,8 @@ const MessageForm = () => {
         }
     }
 
-    return <div className="container">
+    return <Card>
+        <div className="container">
             <div className="col-md-12 mt-5">
                 <Formik {...formikProps}>
                     { () => (
@@ -49,11 +50,13 @@ const MessageForm = () => {
                             <button className="btn btn-primary btn-lg btn-block" type="submit">
                                 Submit
                             </button>
+                            <hr className="mb-4"/>
                         </Form>
                     )}
                 </Formik>
             </div>
-        </div>
+    </div>
+    </Card>
 }
 
 export default MessageForm;
