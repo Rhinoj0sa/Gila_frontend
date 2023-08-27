@@ -35,6 +35,7 @@ const UserForm = () => {
 
     return <Card >
         <div className="container">
+            <h1 align={'center'}>Add Users</h1>
             <div className="col-md-12 mt-5">
                 <Formik {...formikProps}>
                     {() => (
