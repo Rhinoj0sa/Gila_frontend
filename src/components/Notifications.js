@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Table } from 'react-bootstrap';
 import axios from "axios";
+import Card from 'react-bootstrap/Card';
 
 const Notifications = () => {
     const [data, setData] = useState([])
@@ -13,7 +14,7 @@ const Notifications = () => {
             .catch(err => console.log(err))
     }, [])
 
-    return <>
+    return <Card>
         <h1 align={'center'}>Notifications</h1>
         <Table striped bordered hover size={'sm'}>
             <thead>
@@ -40,7 +41,8 @@ const Notifications = () => {
                 </tr>
             ))}
             </tbody>
-        </Table></>
+        </Table>
+    </Card>
 };
 
 export default Notifications;
