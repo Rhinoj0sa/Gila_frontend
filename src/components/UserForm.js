@@ -22,7 +22,7 @@ const UserForm = (props) => {
 
         }),
         onSubmit: (values,{resetForm}) => {
-            axios.post('http://localhost:3000/user', values)
+            axios.post(`${process.env.REACT_APP_API_URL}/user`, values)
                 .then(res => {
                     console.log(res)
                     resetForm()

@@ -12,7 +12,7 @@ const MessageForm = () => {
             category:Yup.string().required('Sorry, category is required')
         }),
         onSubmit: (values,{resetForm}) => {
-            axios.post('http://localhost:3000/messages', values)
+            axios.post(`${process.env.REACT_APP_API_URL}/messages`, values)
                 .then(res => {
                     console.log(res)
                     resetForm()

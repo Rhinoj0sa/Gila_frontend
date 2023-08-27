@@ -5,8 +5,7 @@ import axios from "axios";
 const Notifications = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        console.log('useEffect')
-        axios.get('http://localhost:3000/notifications')
+        axios.get(`${process.env.REACT_APP_API_URL}/notifications`)
             .then(res => {
                 console.log(res.data)
                 setData(data => (res.data.notifications))
