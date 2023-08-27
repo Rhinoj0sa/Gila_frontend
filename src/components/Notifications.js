@@ -4,19 +4,18 @@ import axios from "axios";
 
 const Notifications = () => {
     const [data, setData] = useState([])
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/notifications`)
             .then(res => {
-                console.log(res.data)
-                setData(data => (res.data.notifications))
+                setData(() => (res.data.notifications))
             })
             .catch(err => console.log(err))
     }, [])
-    return (
-        // <div>
-        //     <p>{JSON.stringify(data)}</p>
-        // </div>
-        <Table striped bordered hover>
+
+    return <>
+        <h1 align={'center'}>Notifications</h1>
+        <Table striped bordered hover size={'sm'}>
             <thead>
             <tr>
                 <th>#</th>
@@ -36,13 +35,12 @@ const Notifications = () => {
                     <td>{item.message}</td>
                     <td>{item.category}</td>
                     <td>{item.channel}</td>
-                    <td>{item.sent}</td>
+                    <td>{item.sent ? 'True':'False'}</td>
                     <td>{item.createdAt}</td>
                 </tr>
             ))}
             </tbody>
-        </Table>
-    );
+        </Table></>
 };
 
 export default Notifications;

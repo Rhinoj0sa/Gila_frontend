@@ -5,18 +5,17 @@ import axios from "axios";
 
 const MessageForm = () => {
     const formikProps = {
-
         initialValues:{message:'',category:''},
         validationSchema:Yup.object({
             message:Yup.string().min(10,'Sorry, message is too short').required('Sorry, message is required'),
             category:Yup.string().required('Sorry, category is required')
         }),
+
         onSubmit: (values,{resetForm}) => {
             axios.post(`${process.env.REACT_APP_API_URL}/messages`, values)
-                .then(res => {
-                    console.log(res)
+                .then(() => {
                     resetForm()
-                    alert(`Message ${values.message} created`)
+                    alert(`Message created`)
                 })
                 .catch(err => {
                     console.log(err)
@@ -25,8 +24,7 @@ const MessageForm = () => {
         }
     }
 
-    return(
-        <div className="container">
+    return <div className="container">
             <div className="col-md-12 mt-5">
                 <Formik {...formikProps}>
                     { () => (
@@ -48,7 +46,6 @@ const MessageForm = () => {
                             </Field>
                             <ErrorMessage name={'category'}/>
                         <br/>
-                            {/*<p>{JSON.stringify(formik.values)}</p>*/}
                             <button className="btn btn-primary btn-lg btn-block" type="submit">
                                 Submit
                             </button>
@@ -56,7 +53,7 @@ const MessageForm = () => {
                     )}
                 </Formik>
             </div>
-        </div>)
+        </div>
 }
 
 export default MessageForm;
