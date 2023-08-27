@@ -21,7 +21,7 @@ const UserForm = () => {
 
         onSubmit: (values, {resetForm}) => {
             axios.post(`${process.env.REACT_APP_API_URL}/user`, values)
-                .then(res => {
+                .then(() => {
                     resetForm()
                     alert(`User ${values.name} created`)
                 })
